@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FORBIDDEN_NAMES = {".env", ".venv", "venv", "__pycache__", ".pytest_cache"}
+EXCLUDED_PARTS = {".git", ".venv", "venv", "__pycache__", ".pytest_cache", "artifacts", "release_evidence", "dist", "build"}
 SECRET_PATTERNS = (
     re.compile(r"gsk_[A-Za-z0-9]{20,}"),
     re.compile(r"AIza[0-9A-Za-z_-]{20,}"),
@@ -34,7 +34,7 @@ def validate() -> dict:
             errors.append(f"missing required file: {required}")
     for path in ROOT.rglob("*"):
         relative = path.relative_to(ROOT)
-        if any(part in FORBIDDEN_NAMES for part in relative.parts):
+        if any(part in EXCLUDED_PARTS or part.endswith(".egg-info") for part in relative.parts):
             continue
         if path.is_dir():
             continue
