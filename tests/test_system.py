@@ -18,8 +18,9 @@ def test_registry_matches_pipeline() -> None:
 def test_pipeline_has_all_governance_layers() -> None:
     roles = [role for role, _ in PIPELINE]
     for required in (
-        "mel_council",
-        "anti_revisionist_council",
+        "marx_governor",
+        "engels_governor",
+        "marx_engels_council",
         "debate_engine",
         "confidence_engine",
         "knowledge_graph",
@@ -27,7 +28,19 @@ def test_pipeline_has_all_governance_layers() -> None:
         "validator",
     ):
         assert required in roles
-    assert len(roles) == 20
+    assert len(roles) == 16
+
+
+def test_pipeline_excludes_removed_political_roles() -> None:
+    roles = {role for role, _ in PIPELINE}
+    removed = {
+        "lenin_governor",
+        "stalin_governor",
+        "hoxha_governor",
+        "mel_council",
+        "anti_revisionist_council",
+    }
+    assert roles.isdisjoint(removed)
 
 
 def test_dependencies_are_topologically_ordered() -> None:
@@ -68,7 +81,7 @@ def test_empty_question_is_rejected() -> None:
 
 def test_full_pipeline_executes_offline() -> None:
     result = MELGovernor(MockProvider()).run("What distinguishes evidence from doctrine?")
-    assert len(result.outputs) == 20
+    assert len(result.outputs) == 16
     assert result.outputs[-1].role == "validator"
     assert result.human_review_required is True
     assert result.autonomous_action_authorized is False
@@ -82,5 +95,5 @@ def test_publish_writes_trace_and_report(tmp_path: Path) -> None:
     assert payload["provider"] == "mock"
     assert payload["human_review_required"] is True
     assert payload["autonomous_action_authorized"] is False
-    assert len(payload["outputs"]) == 20
+    assert len(payload["outputs"]) == 16
     assert "No autonomous real-world action is authorized" in report.read_text(encoding="utf-8")
