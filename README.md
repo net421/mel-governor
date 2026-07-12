@@ -1,19 +1,18 @@
 # MEL Governor
 
-**MEL Governor** is a multi-agent political-economy research and evidence-governance laboratory. It coordinates specialized agents for planning, archival organization, source criticism, semantic mapping, contradiction analysis, Marx–Engels–Lenin interpretation, auxiliary review, MEL synthesis, Stalin–Hoxha analysis, anti-revisionist synthesis, adversarial debate, confidence calibration, knowledge graphs, research synthesis, and validation.
+**MEL Governor** is a multi-agent political-economy research and evidence-governance laboratory. It coordinates specialized agents for planning, archival organization, source criticism, semantic mapping, contradiction analysis, Marx–Engels interpretation, auxiliary historical, economic, and sociological review, Marx–Engels synthesis, adversarial debate, confidence calibration, knowledge graphs, research synthesis, and validation.
 
-The political orientation is explicit. The project does not claim neutrality, automatic truth, or autonomous decision authority. Its engineering contribution is a reproducible, inspectable orchestration pattern for evidence-intensive research.
+The political-theory layer is intentionally limited to Marx and Engels. The project does not claim neutrality, automatic truth, or autonomous decision authority. Its engineering contribution is a reproducible, inspectable orchestration pattern for evidence-intensive research.
 
 ## Pipeline
 
 ```text
 Planner → Archivist → Source Critic → Semantic Mapper → Contradiction Finder
-        → Marx → Engels → Lenin → Auxiliary Reviews → MEL Council
-        → Stalin → Hoxha → Anti-Revisionist Council
+        → Marx → Engels → Auxiliary Reviews → Marx–Engels Council
         → Debate → Confidence → Knowledge Graph → Synthesis → Validator
 ```
 
-The complete graph contains **20 named roles** with topologically validated dependencies.
+The complete graph contains **16 named roles** with topologically validated dependencies.
 
 ## Safe offline validation
 
@@ -33,7 +32,7 @@ mel-governor \
 This writes:
 
 - `trace.json` with role dependencies and outputs;
-- `research_report.md` with all twenty stages;
+- `research_report.md` with all sixteen stages;
 - explicit human-review and no-autonomy boundaries.
 
 Mock responses demonstrate orchestration only. They are not substantive political conclusions.
