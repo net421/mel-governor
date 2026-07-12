@@ -52,8 +52,8 @@ def validate() -> dict:
             if found:
                 errors.append(f"secret pattern in {relative}")
     prompts = json.loads((ROOT / "src/mel_governor/prompts.json").read_text(encoding="utf-8"))
-    if len(prompts) != 20:
-        errors.append(f"expected 20 agent prompts, found {len(prompts)}")
+    if len(prompts) != 16:
+        errors.append(f"expected 16 agent prompts, found {len(prompts)}")
     if errors:
         raise SystemExit("; ".join(errors))
     return {
